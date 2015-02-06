@@ -1,0 +1,29 @@
+{
+    "name": "fluentdom/yaml-symfony",
+    "type": "library",
+    "description": "YAML support for FluentDOM (using Symfony/YAML)",
+    "keywords": [
+        "xml", "dom", "fluentdom", "yaml"
+    ],
+    "license": "MIT",
+    "homepage": "http://fluentdom.org",
+    "authors": [
+        {
+            "name": "FluentDOM Contributors",
+            "homepage": "https://github.com/FluentDOM/FluentDOM/contributors"
+        }
+    ],
+    "require": {
+        "fluentdom/fluentdom": "^5.2.1",
+        "symfony/yaml" : "^2.6"
+    },
+    "conflict": {
+        "fluentdom/yaml-dipper": "*"
+    },
+    "autoload": {
+        "files" : ["src/plugin.php"],
+        "psr-4": {
+            "FluentDOM\\YAML\\Symfony\\": "src/"
+        }
+    }
+}
