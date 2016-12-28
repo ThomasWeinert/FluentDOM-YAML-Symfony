@@ -1,0 +1,5 @@
+regular_map:
+  one: first
+  two: second
+
+shorthand_map: { one: first, two: second }

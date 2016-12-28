@@ -1,3 +1,12 @@
+Version 1.1.0
+-------------
+
+- Updated: Dependency - FluentDOM 6.0
+- Updated: Dependency - symfony/yaml 3.2
+- Added: support for fragment loading
+- Added: Options for file loading
+
+
 Version 1.0.0
 -------------
 

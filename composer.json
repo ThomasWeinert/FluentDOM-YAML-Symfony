@@ -14,8 +14,8 @@
         }
     ],
     "require": {
-        "fluentdom/fluentdom": "^5.2.1",
-        "symfony/yaml" : "^2.6"
+        "fluentdom/fluentdom": "^6.0",
+        "symfony/yaml" : "^3.2"
     },
     "conflict": {
         "fluentdom/yaml-dipper": "*"

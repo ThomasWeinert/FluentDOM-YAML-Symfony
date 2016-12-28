@@ -1,31 +1,32 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "93aa5c127157c07d914ce21775afbb62",
+    "hash": "2bbc80d9fccb693ec4213cdfb247857f",
+    "content-hash": "a5e58a97f08fd5f975e722a00ad19834",
     "packages": [
         {
             "name": "fluentdom/fluentdom",
-            "version": "5.2.1",
+            "version": "6.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/FluentDOM/FluentDOM.git",
-                "reference": "a3a5bc66d2e338791efa4ad723ce03ca46cb336f"
+                "reference": "cb09b82bab34ad2f3e9daeb9087dff7b850106dc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FluentDOM/FluentDOM/zipball/a3a5bc66d2e338791efa4ad723ce03ca46cb336f",
-                "reference": "a3a5bc66d2e338791efa4ad723ce03ca46cb336f",
+                "url": "https://api.github.com/repos/FluentDOM/FluentDOM/zipball/cb09b82bab34ad2f3e9daeb9087dff7b850106dc",
+                "reference": "cb09b82bab34ad2f3e9daeb9087dff7b850106dc",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.4.0"
+                "ext-dom": "*",
+                "php": ">=5.6.0"
             },
             "suggest": {
-                "carica/phpcss": "Allows to use css selectors with FluentDOM::QueryCss().",
-                "symfony/css-selector": "Allows to use css selectors with FluentDOM::QueryCss()."
+                "fluentdom/css-selector": "Allows to use css selectors."
             },
             "type": "library",
             "autoload": {
@@ -36,7 +37,7 @@
                     "FluentDOM\\": "src/FluentDOM"
                 }
             },
-            "notification-url": "http://packagist.org/downloads/",
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -49,58 +50,67 @@
             "description": "A fluent api for the php dom extension.",
             "homepage": "http://fluentdom.org",
             "keywords": [
+                "Xpath",
                 "dom",
                 "jquery",
                 "xml"
             ],
-            "time": "2015-02-05 17:47:23"
+            "time": "2016-12-24 19:07:45"
         },
         {
             "name": "symfony/yaml",
-            "version": "v2.6.4",
-            "target-dir": "Symfony/Component/Yaml",
+            "version": "v3.2.1",
             "source": {
                 "type": "git",
-                "url": "https://github.com/symfony/Yaml.git",
-                "reference": "60ed7751671113cf1ee7d7778e691642c2e9acd8"
+                "url": "https://github.com/symfony/yaml.git",
+                "reference": "a7095af4b97a0955f85c8989106c249fa649011f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Yaml/zipball/60ed7751671113cf1ee7d7778e691642c2e9acd8",
-                "reference": "60ed7751671113cf1ee7d7778e691642c2e9acd8",
+                "url": "https://api.github.com/repos/symfony/yaml/zipball/a7095af4b97a0955f85c8989106c249fa649011f",
+                "reference": "a7095af4b97a0955f85c8989106c249fa649011f",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.3.3"
+                "php": ">=5.5.9"
+            },
+            "require-dev": {
+                "symfony/console": "~2.8|~3.0"
+            },
+            "suggest": {
+                "symfony/console": "For validating YAML files using the lint command"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.6-dev"
+                    "dev-master": "3.2-dev"
                 }
             },
             "autoload": {
-                "psr-0": {
+                "psr-4": {
                     "Symfony\\Component\\Yaml\\": ""
-                }
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
             },
-            "notification-url": "http://packagist.org/downloads/",
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
             "authors": [
                 {
-                    "name": "Symfony Community",
-                    "homepage": "http://symfony.com/contributors"
-                },
-                {
                     "name": "Fabien Potencier",
                     "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
                 }
             ],
             "description": "Symfony Yaml Component",
-            "homepage": "http://symfony.com",
-            "time": "2015-01-25 04:39:26"
+            "homepage": "https://symfony.com",
+            "time": "2016-12-10 10:07:06"
         }
     ],
     "packages-dev": [],
