@@ -2,13 +2,14 @@
 namespace FluentDOM\YAML\Symfony {
 
   use FluentDOM\Document;
+  use PHPUnit\Framework\TestCase;
 
-  require_once(__DIR__.'/../vendor/autoload.php');
+  require_once __DIR__.'/../vendor/autoload.php';
 
-  class SerializerTest extends \PHPUnit_Framework_TestCase {
+  class SerializerTest extends TestCase {
 
     /**
-     * @covers FluentDOM\YAML\Symfony\Serializer
+     * @covers \FluentDOM\YAML\Symfony\Serializer
      */
     public function testLoadReturnsImportedDocument() {
       $xml = '<?xml version="1.0" encoding="UTF-8"?>
@@ -44,7 +45,7 @@ namespace FluentDOM\YAML\Symfony {
     }
 
     /**
-     * @covers FluentDOM\YAML\Symfony\Serializer
+     * @covers \FluentDOM\YAML\Symfony\Serializer
      */
     public function testToStringCatchesExceptionAndReturnEmptyString() {
       $serializer = new Serializer_TestProxy(new Document());
