@@ -21,7 +21,7 @@ before_install:
 
 install: composer install
 
-script: phpunit --configuration phpunit.xml.dist
+script: php phpunit.phar --configuration phpunit.xml.dist
 
 notifications:
   webhooks:
