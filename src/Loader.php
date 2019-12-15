@@ -8,25 +8,27 @@
 
 namespace FluentDOM\YAML\Symfony {
 
-  use FluentDOM\Document;
-  use FluentDOM\DocumentFragment;
-  use FluentDOM\Loadable;
+  use FluentDOM\DOM\Document;
+  use FluentDOM\DOM\DocumentFragment;
+  use FluentDOM\Exceptions\InvalidSource;
+  use FluentDOM\Loader\Json\JsonDOM as JsonDOMLoader;
   use FluentDOM\Loader\Options;
   use FluentDOM\Loader\Supports;
 
   use Symfony\Component\Yaml\Parser;
+  use Traversable;
 
   /**
    * Load a DOM document from a HTML5 string or file
    */
-  class Loader extends \FluentDOM\Loader\Json\JsonDOM {
+  class Loader extends JsonDOMLoader {
 
     use Supports;
 
     /**
      * @return string[]
      */
-    public function getSupported() {
+    public function getSupported(): array {
       return ['yaml', 'text/yaml'];
     }
 
@@ -35,10 +37,11 @@ namespace FluentDOM\YAML\Symfony {
      *
      * @param mixed $source
      * @param string $contentType
-     * @param array|\Traversable|Options $options
+     * @param array|Traversable|Options $options
      * @return Document|NULL
+     * @throws InvalidSource
      */
-    public function load($source, $contentType, $options = []) {
+    public function load($source, string $contentType, $options = []) {
       if ($this->supports($contentType)) {
         $settings = $this->getOptions($options);
         $settings->isAllowed($sourceType = $settings->getSourceType($source));
@@ -67,10 +70,10 @@ namespace FluentDOM\YAML\Symfony {
      *
      * @param mixed $source
      * @param string $contentType
-     * @param array|\Traversable|Options $options
+     * @param array|Traversable|Options $options
      * @return DocumentFragment|NULL
      */
-    public function loadFragment($source, $contentType, $options = []) {
+    public function loadFragment($source, string $contentType, $options = []) {
       if ($this->supports($contentType)) {
         $parser = new Parser();
         $yaml = $parser->parse($source);
@@ -84,7 +87,7 @@ namespace FluentDOM\YAML\Symfony {
       return NULL;
     }
 
-    public function getOptions($options) {
+    public function getOptions($options): Options {
       $result = new Options(
         $options,
         [

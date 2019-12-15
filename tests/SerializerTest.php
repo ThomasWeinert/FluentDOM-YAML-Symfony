@@ -1,7 +1,8 @@
 <?php
 namespace FluentDOM\YAML\Symfony {
 
-  use FluentDOM\Document;
+  use FluentDOM\DOM\Document;
+  use LogicException;
   use PHPUnit\Framework\TestCase;
 
   require_once __DIR__.'/../vendor/autoload.php';
@@ -58,7 +59,7 @@ namespace FluentDOM\YAML\Symfony {
   class Serializer_TestProxy extends Serializer {
 
     public function asString() {
-      throw new \LogicException('Catch It.');
+      throw new LogicException('Catch It.');
     }
   }
 }
