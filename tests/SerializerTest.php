@@ -1,6 +1,7 @@
 <?php
 namespace FluentDOM\YAML\Symfony {
 
+  use FluentDOM;
   use FluentDOM\DOM\Document;
   use LogicException;
   use PHPUnit\Framework\TestCase;
@@ -12,7 +13,7 @@ namespace FluentDOM\YAML\Symfony {
     /**
      * @covers \FluentDOM\YAML\Symfony\Serializer
      */
-    public function testLoadReturnsImportedDocument() {
+    public function testLoadReturnsImportedDocument(): void {
       $xml = '<?xml version="1.0" encoding="UTF-8"?>
         <json:json xmlns:json="urn:carica-json-dom.2013">
           <regular_map>
@@ -48,17 +49,32 @@ namespace FluentDOM\YAML\Symfony {
     /**
      * @covers \FluentDOM\YAML\Symfony\Serializer
      */
-    public function testToStringCatchesExceptionAndReturnEmptyString() {
+    public function testToStringCatchesExceptionAndReturnEmptyString(): void {
       $serializer = new Serializer_TestProxy(new Document());
       $this->assertEquals(
         '', (string)$serializer
       );
     }
+
+    /**
+     * @covers \FluentDOM\YAML\Symfony\Serializer
+     */
+    public function testLoadAndSave(): void {
+      $yaml =
+        "regular_map:\n".
+        "  one: first\n".
+        "  two: second\n".
+        "shorthand_map:\n".
+        "  one: first\n".
+        "  two: second\n";
+      $fd = FluentDOM::Query($yaml, 'yaml');
+      $this->assertEquals($yaml, (string)$fd);
+    }
   }
 
   class Serializer_TestProxy extends Serializer {
 
-    public function asString() {
+    public function asString(): string {
       throw new LogicException('Catch It.');
     }
   }

@@ -1,6 +1,8 @@
 <?php
 namespace FluentDOM\YAML\Symfony {
 
+  use FluentDOM\DOM\DocumentFragment;
+  use FluentDOM\Exceptions\InvalidSource;
   use FluentDOM\Loader\Options;
   use PHPUnit\Framework\TestCase;
 
@@ -11,15 +13,16 @@ namespace FluentDOM\YAML\Symfony {
     /**
      * @covers \FluentDOM\YAML\Symfony\Loader
      */
-    public function testSupportsExpectingFalse() {
+    public function testSupportsExpectingFalse(): void {
       $loader = new Loader();
       $this->assertTrue($loader->supports('text/yaml'));
     }
 
     /**
      * @covers \FluentDOM\YAML\Symfony\Loader
+     * @throws InvalidSource
      */
-    public function testLoadReturnsImportedDocument() {
+    public function testLoadReturnsImportedDocument(): void {
       $yaml =
         "regular_map:\n".
         "  one: first\n".
@@ -40,15 +43,16 @@ namespace FluentDOM\YAML\Symfony {
             <two>second</two>
           </shorthand_map>
         </json:json>',
-        $loader->load($yaml, 'text/yaml')->saveXML()
+        $loader->load($yaml, 'text/yaml')->getDocument()->saveXML()
       );
     }
 
 
     /**
      * @covers \FluentDOM\YAML\Symfony\Loader
+     * @throws InvalidSource
      */
-    public function testLoadFromFileReturnsImportedDocument() {
+    public function testLoadFromFileReturnsImportedDocument(): void {
       $yaml = __DIR__.'/TestData/test.yaml';
 
       $loader = new Loader();
@@ -64,14 +68,15 @@ namespace FluentDOM\YAML\Symfony {
             <two>second</two>
           </shorthand_map>
         </json:json>',
-        $loader->load($yaml, 'text/yaml', [Options::ALLOW_FILE => TRUE])->saveXML()
+        $loader->load($yaml, 'text/yaml', [Options::ALLOW_FILE => TRUE])->getDocument()->saveXML()
       );
     }
 
     /**
      * @covers \FluentDOM\YAML\Symfony\Loader
+     * @throws InvalidSource
      */
-    public function testLoadReturnsNullFromInvalidSource() {
+    public function testLoadReturnsNullFromInvalidSource(): void {
       $loader = new Loader();
       $this->assertNull(
         $loader->load(NULL, 'type/invalid')
@@ -81,14 +86,15 @@ namespace FluentDOM\YAML\Symfony {
     /**
      * @covers \FluentDOM\YAML\Symfony\Loader
      */
-    public function testLoadFragment() {
+    public function testLoadFragment(): void {
       $yaml =
         "regular_map:\n".
         "  one: first\n".
         "  two: second\n";
 
       $loader = new Loader();
-      $fragment =  $loader->loadFragment($yaml, 'text/yaml');
+      $fragment = $loader->loadFragment($yaml, 'text/yaml');
+      /** @noinspection PhpPossiblePolymorphicInvocationInspection */
       $this->assertXmlStringEqualsXmlString(
         '<regular_map><one>first</one><two>second</two></regular_map>',
         $fragment->firstChild->saveXml()
@@ -98,7 +104,7 @@ namespace FluentDOM\YAML\Symfony {
     /**
      * @covers \FluentDOM\YAML\Symfony\Loader
      */
-    public function testLoadFragmentReturnsNullFromInvalidSource() {
+    public function testLoadFragmentReturnsNullFromInvalidSource(): void {
       $loader = new Loader();
       $this->assertNull(
         $loader->loadFragment(NULL, 'type/invalid')
@@ -108,7 +114,7 @@ namespace FluentDOM\YAML\Symfony {
     /**
      * @covers \FluentDOM\YAML\Symfony\Loader
      */
-    public function testLoadFragmentReturnsNullFromEmptySource() {
+    public function testLoadFragmentReturnsNullFromEmptySource(): void {
       $loader = new Loader();
       $this->assertNull(
         $loader->loadFragment('', 'text/yaml')

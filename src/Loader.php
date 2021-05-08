@@ -1,9 +1,8 @@
 <?php
 /**
- * Load a DOM document from a HTML5 string or file
+ * Load a DOM document from a YAML string or file
  *
  * @license http://www.opensource.org/licenses/mit-license.php The MIT License
- * @copyright Copyright (c) 2009-2014 Bastian Feder, Thomas Weinert
  */
 
 namespace FluentDOM\YAML\Symfony {
@@ -13,13 +12,14 @@ namespace FluentDOM\YAML\Symfony {
   use FluentDOM\Exceptions\InvalidSource;
   use FluentDOM\Loader\Json\JsonDOM as JsonDOMLoader;
   use FluentDOM\Loader\Options;
+  use FluentDOM\Loader\Result as LoaderResult;
   use FluentDOM\Loader\Supports;
 
   use Symfony\Component\Yaml\Parser;
   use Traversable;
 
   /**
-   * Load a DOM document from a HTML5 string or file
+   * Load a DOM document from a YAML string or file
    */
   class Loader extends JsonDOMLoader {
 
@@ -41,7 +41,7 @@ namespace FluentDOM\YAML\Symfony {
      * @return Document|NULL
      * @throws InvalidSource
      */
-    public function load($source, string $contentType, $options = []) {
+    public function load($source, string $contentType, $options = []): ?LoaderResult {
       if ($this->supports($contentType)) {
         $settings = $this->getOptions($options);
         $settings->isAllowed($sourceType = $settings->getSourceType($source));
@@ -58,7 +58,7 @@ namespace FluentDOM\YAML\Symfony {
               $root = $document->createElementNS(self::XMLNS, 'json:json')
             );
             $this->transferTo($root, $yaml);
-            return $document;
+            return new LoaderResult($document, $contentType);
           }
         }
       }
@@ -73,7 +73,7 @@ namespace FluentDOM\YAML\Symfony {
      * @param array|Traversable|Options $options
      * @return DocumentFragment|NULL
      */
-    public function loadFragment($source, string $contentType, $options = []) {
+    public function loadFragment($source, string $contentType, $options = []): ?DocumentFragment {
       if ($this->supports($contentType)) {
         $parser = new Parser();
         $yaml = $parser->parse($source);
