@@ -2,7 +2,7 @@ FluentDOM-YAML-Symfony
 =====================
 
 [![License](https://poser.pugx.org/fluentdom/yaml-symfony/license.svg)](http://www.opensource.org/licenses/mit-license.php)
-[![Build Status](https://travis-ci.org/ThomasWeinert/FluentDOM-YAML-Symfony.svg?branch=master)](https://travis-ci.org/FluentDOM/YAML-Symfony)
+[![CI](https://github.com/ThomasWeinert/FluentDOM-YAML-Symfony/actions/workflows/ci.yml/badge.svg)](https://github.com/ThomasWeinert/FluentDOM-YAML-Symfony/actions/workflows/ci.yml)
 [![Total Downloads](https://poser.pugx.org/fluentdom/yaml-symfony/downloads.svg)](https://packagist.org/packages/fluentdom/yaml-symfony)
 [![Latest Stable Version](https://poser.pugx.org/fluentdom/yaml-symfony/v/stable.svg)](https://packagist.org/packages/fluentdom/yaml-symfony)
 [![Latest Unstable Version](https://poser.pugx.org/fluentdom/yaml-symfony/v/unstable.svg)](https://packagist.org/packages/fluentdom/yaml-symfony)
@@ -31,11 +31,15 @@ $query = FluentDOM($yaml, 'text/yaml');
 Serializer
 ----------
 
-The serializer needs to be created with for document and can be casted into a string.
+The serializer needs to be created for a document and can be cast into a string.
 
 ```php
 echo new FluentDOM\YAML\Symfony\Serializer($document);
 ```
 
+```php
+$query = FluentDOM($yaml, 'text/yaml');
+echo $query;
+```
 
 
