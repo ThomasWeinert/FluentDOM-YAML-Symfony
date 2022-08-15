@@ -18,7 +18,7 @@
         "ext-dom": "*",
         "ext-json": "*",
         "fluentdom/fluentdom": "^8.0.0",
-        "symfony/yaml" : "^5.4"
+        "symfony/yaml" : "^5.4 || ^6.0"
     },
     "conflict": {
         "fluentdom/yaml-dipper": "*"
