@@ -14,11 +14,11 @@
         }
     ],
     "require": {
-        "php": ">=7.2",
+        "php": "^7.4 || >=8.0",
         "ext-dom": "*",
         "ext-json": "*",
         "fluentdom/fluentdom": "^8.0.0",
-        "symfony/yaml" : "^5.4 || ^6.1"
+        "symfony/yaml" : "^5.4"
     },
     "conflict": {
         "fluentdom/yaml-dipper": "*"
